@@ -1,7 +1,7 @@
 #Twitter Scrape GUI
 #Salvador Hernandez
-from tkinter import *
-from tkinter import ttk
+from Tkinter import *
+import ttk
 from PIL import ImageTk, Image
 import webbrowser
 import os
@@ -35,18 +35,18 @@ def getUsers(tHandle):
 	handle = tHandle
 	url = twitter+handle
 	handle = handle.lower()
-	
+
 	#makes a requet baswd on the url with the handle to check if exists or not
 	request = requests.get(url)
 
 	#checks to see if the user exists
 	if(request.status_code != 200):
 	    print("Invalid twitter handle, Please try again")
-	    return 
+	    return
 	else:
 	    print("The handle exists!")
 	print "\n---------------\nGetting users from: "+handle+"\n---------------\n"
-	
+
 	#open the url and reads the html
 	soup = BeautifulSoup(urlopen(url).read())
 
@@ -78,7 +78,7 @@ def getUsers(tHandle):
 	    f.write(i+"\n")
 	    print "from "+handle+" : "+i
 	f.close()
-	
+
 	#stops the timer
 	end_time = datetime.now()
 	#displays total time elapsed
@@ -105,7 +105,7 @@ def checkUser(tHandle):
 	    print("The handle exists!")
 	    return 1
 
-#grabs user input and initializes the process of scraping for users and creating the notebook tabs	    
+#grabs user input and initializes the process of scraping for users and creating the notebook tabs
 def echo(*args):
 	global check
 	global tabs
@@ -119,7 +119,7 @@ def echo(*args):
 	valid = checkUser(temp)
 	if(valid == 0):
 		return
-	
+
 	#opens the user's profile on the web browser
 	webbrowser.open("https://www.twitter.com/"+temp)
 
@@ -130,7 +130,7 @@ def echo(*args):
 	#gets all the images from the user
 	allfiles=os.listdir(endDir)
 	imlist=[filename for filename in allfiles if  filename[-4:] in [".png",".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG"]]
-	
+
 	#sets the sizes for the notebooks
 	tabWidth = 1600
 	tabHeight = 1400
@@ -150,7 +150,7 @@ def echo(*args):
 	userNetwork = ttk.Frame(tabs, borderwidth=5, relief="sunken", width=tabWidth, height=tabHeight)
 	#creates the tab that will contain the user's average image
 	displayAvg = ttk.Frame(tabs, borderwidth=5, relief="sunken", width=tabWidth, height=tabHeight)
-	
+
 	#adds the tabs
 	tabs.add(user, text = temp)
 	tabs.add(userNetwork, text = temp+"Network")
@@ -180,7 +180,7 @@ def echo(*args):
 			index+=1
 
 	#gets the user's from the main user
-	getUsers(temp)	
+	getUsers(temp)
 	#creates the networkmap
 	os.system("python networkMap.py "+temp+".txt")
 
