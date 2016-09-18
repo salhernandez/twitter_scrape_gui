@@ -15,3 +15,4 @@ Required packages to run:
 10)Python imaging tk
   sudo apt-get install python-imaging-tk
 11)pydot
+12) sudo apt-get install python-beautifulsoup
