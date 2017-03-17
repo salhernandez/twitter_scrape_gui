@@ -11,7 +11,7 @@ Required packages to run:
 6)BeautifulSoup
 7)urllib & urllib2
 8)networkx
-9)puplot
+9)pyplot
 10)Python imaging tk
   sudo apt-get install python-imaging-tk
 11)pydot
